@@ -1,6 +1,9 @@
 '''
-Author: Noah Sokol
-
+@author: NSokol25
+Created on Nov 15, 2024
+desc: Matrix class that has capabilities to add, multiply, find inverse of, 
+find determinant of and put in reduced row echalont form
+last edited: 12/2/24
 '''
 from copy import deepcopy
 
@@ -270,21 +273,41 @@ class Matrix:
         Static method that returns determinant of 2x2 matrix
     Args:
         matrix - list - data of matrix
-        
+    Returns
+        list - determinant of 2x2 matrix
         '''
         return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]) if len(matrix) == len(matrix[0]) and len(matrix) == 2 else False
 
     @staticmethod
     def reducedDeterminateList(matrix: list, curRow, curCol):
+        '''
+        Static method that returns list of matrix without all points in chosen row and col
+    Args:
+        matrix - list - data of matrix
+        curRow - Row to remove points from
+        curCol - Col to remove points from
+    Returns
+        list - matrix without points in chosen row and col
+        '''
         return [[matrix[j][i] for i in range(len(matrix)) if i != curCol]for j in range(len(matrix)) if j != curRow]
     
     @staticmethod
     def recursiveDeterminateFinder(matrix: list):
+        '''
+        Static recursive method that returns determinant of a square matrix
+    Args:
+        matrix - list - data of matrix
+    Returns
+        sum(result) - result contains all 2x2 determinantes then sum adds all of them
+        '''
         if len(matrix) != 2:
             result = []
             for i in range(len(matrix)):
+                #list to find determinante of
                 nextList = Matrix.reducedDeterminateList(matrix, 0, i)
+                #add determinant of matrix to result recoursively and flips between positive and negitive with power of -1^1
                 result.append(pow(-1, i) * matrix[0][i] * Matrix.recursiveDeterminateFinder(nextList))
             return sum(result)
         else:
+            #base case 2x2 matrix
             return Matrix.twoByTwoDeterminate(matrix)
