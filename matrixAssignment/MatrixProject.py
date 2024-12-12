@@ -225,6 +225,8 @@ class Matrix:
         if self.cols != self.rows:
             print("Matrix must be square to invert")
             return False
+        elif self.cols == 1:
+            return Matrix(1,1,[1/self.data[0][0]])
         if round(Matrix.recursiveDeterminateFinder(self.data), 3) == 0:
             print("Inverse does not exist, determinate = 0")
             return False
