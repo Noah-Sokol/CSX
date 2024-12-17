@@ -313,3 +313,6 @@ class Matrix:
         else:
             #base case 2x2 matrix
             return Matrix.twoByTwoDeterminate(matrix)
+        
+matrix = Matrix(3,3,[[0,0,1],[1,2,3],[4,5,8]])
+print(Matrix.recursiveDeterminateFinder(matrix.data))

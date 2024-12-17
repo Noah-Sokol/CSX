@@ -85,7 +85,9 @@ if __name__ == "__main__":
                 print('matrix must be square to find determinate')
                 result = False
             else:
-                result = m1.recursiveDeterminateFinder()
+                result = Matrix.recursiveDeterminateFinder(m1.data)
+                print(result)
+                result = False
         elif choice == 9:
             break
         if result != False:
