@@ -28,13 +28,11 @@ v_mars = orbital_velocity(227.9e9)
 mars = planet(6.39e23, 227.9e9, 0, 0, v_mars, 0, 0)
 
 # Instanciate Jupiter
-
 v_jupiter = orbital_velocity(778.5e9)
 jupiter = planet(1.898e27, 778.5e9, 0, 0, v_jupiter, 0, 0)
 
 # Instanciate Saturn
-r_saturn = 1.
-v_saturn = orbital_velocity(433e12)
+v_saturn = orbital_velocity(1.433e12)
 saturn = planet(5.683e26, 433e12, 0, 0, v_saturn, 0, 0)
 
 # Instanciate Uranus
@@ -68,7 +66,7 @@ def ani(i):
     #plot and call step function
     for ind, planet in enumerate(planets):
         planet.step(400000, planets)
-        #if planet != mercury and planet != venus and planet != mars and planet != earth and planet != jupiter    :
+        #planet != mercury and planet != venus and planet != mars and planet != earth and planet != jupiter:
         plt.plot(planet.posX, planet.posY, 'o', markersize=8, color = colors[ind])
 
     #store points to lists
@@ -89,7 +87,7 @@ def ani(i):
     #calculates area every 80 intervals, or around each period
     if i == 80:
         calc_areas(ex, ey)
-        print("Calculated distances of the foci: ",foci_distances)
+        print("Calculated distances of the foci: ", foci_distances)
         print()
 
     #plots orbits of planets
@@ -103,6 +101,17 @@ fig, ax = plt.subplots()
 x_data, y_data = [], []
 
 def sum_foci_distances(point, f1, f2):
+    '''
+        Given a point and the two foci locations return the sum of the distances between the foci and the point
+
+        args:
+            point - touple - Point plotted on ellipse
+            f1 - touple - first foci location
+            f2 - touple - second foci location
+        
+        returns:
+            Calculated area of trangle        
+        '''
     d1 = ((point[0] - f1[0])**2 + (point[1] - f1[1])**2)**.5
     d2 = ((point[0] - f2[0])**2 + (point[1] - f2[1])**2)**.5
 
@@ -131,7 +140,7 @@ def div_into_areas(center_point, p1, p2):
     #plt.fill([sun.posX, p1[0], p2[0]], [sun.posY, p1[1], p2[1]], alpha=0.3)
 
     # googled area of a triangle
-    return 0.5 * abs(dx1 * dy2 - dx2 * dy1) 
+    return 0.5 * abs(dx1 * dy2 - dx2 * dy1)
 
 def calc_areas(x_points,y_points):
     '''
